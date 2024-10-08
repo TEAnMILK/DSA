@@ -1,0 +1,138 @@
+STRUCTURE Contact
+    STRING name
+    STRING phoneNumber
+END STRUCTURE
+       
+
+    
+    DECLARE phonebook AS List of Contacts
+
+   
+    FUNCTION (Main)
+        INITIALIZE phonebook as an empty list
+        
+        WHILE (true) DO
+           
+          DISPLAY "Phonebook Menu:"
+            DISPLAY "1. Insert Contact"
+            DISPLAY "2. Search Contact"
+            DISPLAY "3. Display All Contacts"
+            DISPLAY "4. Delete Contact"
+            DISPLAY "5. Update Contact"
+            DISPLAY "6. Sort Contacts"
+            DISPLAY "7. Analyze Search Efficiency"
+            DISPLAY "8. Exit"
+            DISPLAY "Choose an option:"
+            GET option
+            
+           
+            IF (option==1) THEN
+                DISPLAY "Enter name:"
+                GET name
+                DISPLAY "Enter phone number:"
+                GET phoneNumber
+                CALL InsertContact(phonebook, name, phoneNumber)
+                
+            ELSE IF (option==2) THEN
+                DISPLAY "Enter name to search:"
+                GET name
+                result = CALL SearchContact(phonebook, name)
+                IF (result != null) THEN
+                    DISPLAY "Contact found: Name =", result.name, ", Phone Number =", result.phoneNumber
+                ELSE
+                    DISPLAY "Contact not found"
+                END IF
+                
+            ELSE IF (option==3) THEN
+                CALL DisplayAllContacts(phonebook)
+                
+            ELSE IF (option==4) THEN
+                DISPLAY "Enter name to delete:"
+                GET name
+                CALL DeleteContact(phonebook, name)
+
+            ELSE IF (option==5) THEN
+                DISPLAY "Enter name to update:"
+                GET name
+                DISPLAY "Enter new phone number:"
+                GET newPhoneNumber
+                CALL UpdateContact(phonebook, name, newPhoneNumber)
+                
+            ELSE IF (option==6) THEN
+                CALL SortContacts(phonebook)
+
+            ELSE IF (option==7) THEN
+                CALL AnalyzeSearchEfficiency()
+
+            ELSE IF (option==8) THEN
+                DISPLAY "Exiting..."
+               
+            ELSE
+                DISPLAY "Invalid option, please try again."
+            END IF
+        END WHILE
+    END FUNCTION
+
+FUNCTION InsertContact(phonebook, name, phoneNumber)
+        DECLARE newContact AS Contact
+        newContact.name = name
+        newContact.phoneNumber = phoneNumber
+        ADD newContact TO phonebook
+        DISPLAY "Contact added:", name
+    END FUNCTION
+
+    
+    FUNCTION SearchContact(phonebook, name) RETURNS Contact
+        FOR EACH contact IN phonebook DO
+            IF (contact.name == name) THEN
+                RETURN contact
+            END IF
+        END FOR
+        RETURN null 
+    END FUNCTION
+
+    
+    FUNCTION DisplayAllContacts(phonebook)
+       THEN
+            DISPLAY "Phonebook is empty."
+        ELSE
+            FOR EACH contact IN phonebook DO
+                DISPLAY "Name:", contact.name, ", Phone Number:", contact.phoneNumber
+            END FOR
+        END IF
+    END FUNCTION
+
+   
+    FUNCTION DeleteContact(phonebook, name)
+        DECLARE contactToRemove AS Contact
+        contactToRemove = CALL SearchContact(phonebook, name)
+        IF (contactToRemove != null) THEN
+            REMOVE contactToRemove FROM phonebook
+            DISPLAY "Contact deleted:", name
+        ELSE
+            DISPLAY "Contact not found."
+        END IF
+    END FUNCTION
+
+   
+    FUNCTION UpdateContact(phonebook, name, newPhoneNumber)
+        DECLARE contactToUpdate AS Contact
+        contactToUpdate = CALL SearchContact(phonebook, name)
+        IF (contactToUpdate != null) THEN
+            contactToUpdate.phoneNumber = newPhoneNumber
+            DISPLAY "Contact updated:", name
+        ELSE
+            DISPLAY "Contact not found."
+        END IF
+    END FUNCTION
+
+   
+    FUNCTION SortContacts(phonebook)
+        SORT(phonebook, contact.name)
+        DISPLAY "Contacts sorted."
+    END FUNCTION
+
+   
+    FUNCTION AnalyzeSearchEfficiency()
+        DISPLAY "Search Time Complexity: O(n)"
+    END FUNCTION
