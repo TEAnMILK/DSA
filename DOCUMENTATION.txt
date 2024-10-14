@@ -2,17 +2,17 @@ Phonebook Application Documentation
 Overview
 The Phonebook Application is a simple console-based application that allows users to manage a list of contacts. The application provides features to insert, search, display, delete, update, and sort contacts.
 
-Data Structure
+DATA STRUCTURE
 The application uses a Contact structure to represent individual contacts. The Contact structure has two fields:
 name: a string representing the contact's name
 phoneNumber: a string representing the contact's phone number
 The application also uses a List of Contacts to store all contacts.
 
-Functions
-Main Function
+FUNCTIONS
+MAIN FUNCTION
 The Main function is the entry point of the application. It initializes an empty phonebook and enters a loop where it displays a menu to the user and performs actions based on the user's input.
 
-InsertContact Function
+InsertContact FUNCTION
 Purpose: Inserts a new contact into the phonebook.
 Parameters:
 phonebook: the list of contacts
@@ -27,20 +27,23 @@ phonebook: the list of contacts
 name: the name of the contact to search for
 Returns: The Contact object if found, or null if not found
 Description: Iterates through the phonebook and returns the first Contact object with a matching name.
-DisplayAllContacts Function
+
+DisplayAllContacts FUNCTION
 Purpose: Displays all contacts in the phonebook.
 Parameters:
 phonebook: the list of contacts
 Returns: None
 Description: If the phonebook is empty, displays a message indicating so. Otherwise, iterates through the phonebook and displays each contact's name and phoneNumber.
-DeleteContact Function
+
+DeleteContact FUNCTION
 Purpose: Deletes a contact from the phonebook by name.
 Parameters:
 phonebook: the list of contacts
 name: the name of the contact to delete
 Returns: None
 Description: Searches for the contact using SearchContact, and if found, removes it from the phonebook.
-UpdateContact Function
+
+UpdateContact FUNCTION
 Purpose: Updates a contact's phone number in the phonebook.
 Parameters:
 phonebook: the list of contacts
@@ -48,18 +51,21 @@ name: the name of the contact to update
 newPhoneNumber: the new phone number
 Returns: None
 Description: Searches for the contact using SearchContact, and if found, updates its phoneNumber field.
-SortContacts Function
+
+SortContacts FUNCTION
 Purpose: Sorts the contacts in the phonebook by name.
 Parameters:
 phonebook: the list of contacts
 Returns: None
 Description: Sorts the phonebook using a sorting algorithm (not specified in the pseudocode).
-AnalyzeSearchEfficiency Function
+
+AnalyzeSearchEfficiency FUNCTION
 Purpose: Displays the time complexity of the search algorithm used in SearchContact.
 Parameters: None
 Returns: None
 Description: Displays a message indicating that the search time complexity is O(n).
-Menu Options
+
+MENU OPTIONS
 The application displays a menu with the following options:
 
 Insert Contact
@@ -71,6 +77,6 @@ Sort Contacts
 Analyze Search Efficiency
 Exit
 
-Notes
+NOTES
 The pseudocode does not specify the sorting algorithm used in SortContacts.
 The AnalyzeSearchEfficiency function only displays a message indicating the time complexity, but does not provide any additional analysis or metrics.
